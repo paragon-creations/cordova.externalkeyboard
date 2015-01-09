@@ -34,29 +34,74 @@ with
 
 ## In `MainViewController.m`
 
-add 
+Under @implementation MainViewContoller - add the following: 
 
 ```Objective-c
+// For the External Keyboard Support
 - (BOOL)canBecomeFirstResponder {
-    return YES;
+	return YES;
 }
-
-- (void) setKeyCommands: (NSMutableArray*) cmds {
-    commands = cmds;
-}
-
-
 - (NSArray *)keyCommands {
-    return commands;
+	return @[
+		[UIKeyCommand keyCommandWithInput:@"0" modifierFlags:0 action:@selector(keyPress0)],
+		[UIKeyCommand keyCommandWithInput:@"1" modifierFlags:0 action:@selector(keyPress1)],
+		[UIKeyCommand keyCommandWithInput:@"2" modifierFlags:0 action:@selector(keyPress2)],
+		[UIKeyCommand keyCommandWithInput:@"3" modifierFlags:0 action:@selector(keyPress3)],
+		[UIKeyCommand keyCommandWithInput:@"4" modifierFlags:0 action:@selector(keyPress4)],
+		[UIKeyCommand keyCommandWithInput:@"5" modifierFlags:0 action:@selector(keyPress5)],
+		[UIKeyCommand keyCommandWithInput:@"6" modifierFlags:0 action:@selector(keyPress6)],
+		[UIKeyCommand keyCommandWithInput:@"7" modifierFlags:0 action:@selector(keyPress7)],
+		[UIKeyCommand keyCommandWithInput:@"8" modifierFlags:0 action:@selector(keyPress8)],
+		[UIKeyCommand keyCommandWithInput:@"9" modifierFlags:0 action:@selector(keyPress9)],
+		[UIKeyCommand keyCommandWithInput:@"\r" modifierFlags:0 action:@selector(keyPressR)],
+    ];
+}
+- (void)keyPress0 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "0"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress1 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "1"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress2 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "2"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress3 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "3"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress4 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "4"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress5 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "5"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress6 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "6"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress7 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "7"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress8 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "8"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPress9 {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "9"];
+	[self.commandDelegate evalJs:jsStatement];
+}
+- (void)keyPressR {
+	NSString *jsStatement = [NSString stringWithFormat:@"external_device_command('%s')", "\\r"];
+	[self.commandDelegate evalJs:jsStatement];
 }
 
-- (void) onKeyPress:(UIKeyCommand*) cmd {
-    NSLog(@"onKeyPress");
-    NSString *combo = [ExternalKeyboard getCombo:cmd];
-    NSLog(@"COMBO [%@]", combo);
-    NSString *jsStatement = [NSString stringWithFormat:@"handleKeyCommand('%@')", combo];
-    [self.commandDelegate evalJs:jsStatement];
-}
+/* ## */
 ```
 
 
